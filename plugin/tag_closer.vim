@@ -27,29 +27,23 @@ function! s:opening_tag(closing_tag)
   return '<'.s:tag_name(a:closing_tag).'[^>]*>'
 endfunction
 
-function! s:search_back_for(re)
-  let [lnum, col] = searchpos(a:re, 'bW')
-  return matchstr(getline(lnum), a:re, col-1)
+" Moves to previous occurrence of pattern and returns the matching string.
+function! s:find_previous(pattern)
+  let [lnum, col] = searchpos(a:pattern, 'bW')
+  return matchstr(getline(lnum), a:pattern, col-1)
 endfunction
 
-" Returns the first unclosed tag, searching backwards.
-" If no unclosed tag is found, returns an empty string.
-"
-" a:1 - a previous opening tag from which to begin the search.
-function! s:previous_unclosed_tag(...)
-  if a:0
-    call s:search_back_for(a:1)
-    return s:previous_unclosed_tag()
-  endif
-
-  let tag = s:search_back_for('<[^>]\+>')
+function! s:previous_unclosed_tag()
+  let tag = s:find_previous('<[^>]\+>')
 
   if empty(tag)
     return ''
   elseif s:is_void_element(tag)
-    return s:previous_unclosed_tag(tag)
+    call s:find_previous(tag)
+    return s:previous_unclosed_tag()
   elseif s:is_closing(tag)
-    return s:previous_unclosed_tag(s:opening_tag(tag))
+    call searchpair(s:opening_tag(tag), '', tag.'\zs', 'bW')
+    return s:previous_unclosed_tag()
   else
     return tag
   endif

@@ -1,7 +1,5 @@
 function SetUp()
   enew
-  call setline(1, ['<html lang="en">', '<body>', '<foo-bar>', '<area>', '<ul class="foo">', '<li>one</li>', '<li>two'])
-  normal! G$
 endfunction
 
 function TearDown()
@@ -10,6 +8,9 @@ endfunction
 
 
 function! Test_tag_name()
+  call setline(1, ['<html lang="en">', '<body>', '<foo-bar>', '<area>', '<ul class="foo">', '<li>one</li>', '<li>two'])
+  normal! G$
+
   let sid = matchstr(execute('filter plugin/tag_closer.vim scriptnames'), '\d\+')
   let TagName = function("<SNR>".sid."_tag_name")
 
@@ -25,7 +26,10 @@ function! Test_tag_name()
 endfunction
 
 
-function! Test_normal_mode()
+function! Test_close_tag()
+  call setline(1, ['<html lang="en">', '<body>', '<foo-bar>', '<area>', '<ul class="foo">', '<li>one</li>', '<li>two'])
+  normal! G$
+
   call CloseTag()
   call assert_equal('<li>two</li>', getline('$'))
 
@@ -47,12 +51,30 @@ endfunction
 
 
 function! Test_normal_mode_map()
+  call setline(1, ['<html lang="en">', '<body>', '<foo-bar>', '<area>', '<ul class="foo">', '<li>one</li>', '<li>two'])
+  normal! G$
+
   normal g/
   call assert_equal('<li>two</li>', getline('$'))
 endfunction
 
 
 function! Test_insert_mode()
+  call setline(1, ['<html lang="en">', '<body>', '<foo-bar>', '<area>', '<ul class="foo">', '<li>one</li>', '<li>two'])
+  normal! G$
+
   execute "normal a\<C-G>/"
   call assert_equal('<li>two</li>', getline('$'))
+endfunction
+
+
+function! Test_intermediate_closed_tags_with_same_name()
+  call setline(1, ['<html>', '<body>', '<div>', '<div>', '</div>', '<p>Text</p>'])
+  normal! G$
+
+  normal g/
+  call assert_equal('<p>Text</p></div>', getline('$'))
+
+  normal g/
+  call assert_equal('<p>Text</p></div></body>', getline('$'))
 endfunction
