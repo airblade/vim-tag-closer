@@ -1,0 +1,26 @@
+*tag_closer.txt*  Close HTML tags on demand
+
+Author: Andrew Stewart (<boss@airbladesoftware.com>)
+Licence: MIT
+
+This plugin is only available if 'compatible' is not set.
+
+
+INTRODUCTION                            *tag_closer*
+
+There are quite a few tag-closing plugins already but they all close tags
+eagerly, i.e. they generate the closing tag at the same time as the opening
+tag.  I prefer to put in the closing tags when I get to where they should go.
+
+Having said that, I don't want to actually type out each closing tag.  The
+computer can do that for me.
+
+Ignores void elements:
+<https://html.spec.whatwg.org/multipage/syntax.html#void-elements>
+
+
+MAPPINGS                                *tag_closer-mappings*
+
+Mode      Mapping ~
+Insert    <C-g>/
+Normal    g/
