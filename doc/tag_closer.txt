@@ -24,3 +24,6 @@ MAPPINGS                                *tag_closer-mappings*
 Mode      Mapping ~
 Insert    <C-g>/
 Normal    g/
+
+
+  vim:tw=78:et:ft=help:norl:
