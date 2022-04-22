@@ -55,7 +55,7 @@ function! s:previous_unclosed_tag(...)
   endif
 endfunction
 
-function! s:insert_closing_tag(opening_tag)
+function! s:append_closing_tag(opening_tag)
   execute "normal! a".s:closing_tag(a:opening_tag)
 endfunction
 
@@ -65,7 +65,7 @@ function! CloseTag()
   let tag = s:previous_unclosed_tag()
   call cursor(lnum, col)
   if len(tag)
-    call s:insert_closing_tag(tag)
+    call s:append_closing_tag(tag)
   endif
 endfunction
 
