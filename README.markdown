@@ -18,7 +18,7 @@ Install like every other Vim plugin :)
 
 Append the appropriate closing tag at the cursor with:
 
-- Insert-mode: <kbd><C-G>/</kbd>
+- Insert-mode: <kbd>\<C-G>/</kbd>
 - Normal-mode: <kbd>g/</kbd>
 
 
