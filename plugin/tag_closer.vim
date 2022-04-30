@@ -64,7 +64,7 @@ function! CloseTag()
 endfunction
 
 
-nnoremap <Plug>(CloseTag) :call CloseTag()<CR>
+noremap <Plug>(CloseTag) :call CloseTag()<CR>
 
 nmap g/ <Plug>(CloseTag)
 imap <C-G>/ <C-O><Plug>(CloseTag)
