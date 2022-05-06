@@ -8,7 +8,7 @@ let s:void_elements = ['area', 'area', 'base', 'br', 'col', 'embed',
       \ 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']
 
 function! s:tag_name(tag)
-  return matchstr(a:tag, '\v^\</?\zs\a\w+(\-\a\w+)?')
+  return matchstr(a:tag, '\v^\</?\zs\a\w*(\-\a\w*)?')
 endfunction
 
 function! s:is_void_element(tag)

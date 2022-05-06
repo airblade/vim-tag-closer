@@ -24,6 +24,7 @@ function! Test_tag_name()
   call assert_equal('foo-bar', call(TagName, ['</foo-bar>']))
   call assert_equal('foo-bar', call(TagName, ['<foo-bar />']))
 
+  call assert_equal('p', call(TagName, ['<p>']))
   call assert_equal('h1', call(TagName, ['<h1>']))
   call assert_equal('x1foo-y2bar', call(TagName, ['<x1foo-y2bar>']))
 endfunction
