@@ -4,6 +4,11 @@ endif
 let g:loaded_tag_closer = 1
 
 
+if !exists('g:tag_closer_enable_default_keymaps')
+  " If true, set up the default keymaps.
+  let g:tag_closer_enable_default_keymaps = 1
+endif
+
 let s:void_elements = ['area', 'area', 'base', 'br', 'col', 'embed',
       \ 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']
 
@@ -66,5 +71,7 @@ endfunction
 
 noremap <Plug>(CloseTag) :call CloseTag()<CR>
 
-nmap g/ <Plug>(CloseTag)
-imap <C-G>/ <C-O><Plug>(CloseTag)
+if g:tag_closer_enable_default_keymaps
+  nmap g/ <Plug>(CloseTag)
+  imap <C-G>/ <C-O><Plug>(CloseTag)
+endif
