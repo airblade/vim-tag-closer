@@ -22,6 +22,13 @@ Append the appropriate closing tag at the cursor with:
 - Normal-mode: <kbd>g/</kbd>
 
 
+### Settings
+
+* `g:tag_closer_enable_default_keymaps` (bool, default: `1`)
+
+  Set to `0` to disable the default keymaps. In this case, you will need to create your own keymaps.
+
+
 ### Intellectual property
 
 Copyright 2022 Andrew Stewart.  Released under the MIT licence.

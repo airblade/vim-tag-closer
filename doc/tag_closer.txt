@@ -26,4 +26,11 @@ Insert    <C-g>/
 Normal    g/
 
 
+SETTINGS                                *tag_closer-settings*
+
+g:tag_closer_enable_default_keymaps     (bool, default: 1)
+  Set to 0 to disable the default keymaps. In this case, you will need to
+  create your own keymaps.
+
+
   vim:tw=78:et:ft=help:norl:
